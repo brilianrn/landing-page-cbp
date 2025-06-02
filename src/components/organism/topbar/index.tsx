@@ -4,13 +4,17 @@ import { Switch } from "@/components/atoms";
 import { sectionRoute } from "@/shared/constants/routes";
 import { store } from "@/shared/context";
 import sxTopbar from "@/shared/styles/components/topbar.module.css";
-import { EStorageKey, storeLocalStorageItem } from "@/shared/utils";
+import {
+  EStorageKey,
+  retrieveLocalStorageItem,
+  storeLocalStorageItem,
+} from "@/shared/utils";
 import classNames from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { ICBars, ICChevron, ICMoon, ICSun } from "public/assets/icons";
 import { Logo, LogoAll } from "public/assets/images";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Menus } from "./menus";
 import { ISectionHeader } from "./topbar";
 
@@ -21,9 +25,9 @@ const Topbar = () => {
     state: { activeMenu },
   } = useContext(store);
 
-  // const storedTheme = retrieveLocalStorageItem(EStorageKey.THEME) || "light";
+  const storedTheme = retrieveLocalStorageItem(EStorageKey.THEME) || "light";
 
-  // const theme = useMemo(() => storedTheme, [storedTheme]);
+  const theme = useMemo(() => storedTheme, [storedTheme]);
 
   const menus: Array<ISectionHeader> = [
     {
@@ -53,17 +57,17 @@ const Topbar = () => {
     },
   ];
 
-  // useEffect(() => {
-  //   if (window) {
-  //     const prefersDark =
-  //       (!("theme" in localStorage) &&
-  //         window.matchMedia("(prefers-color-scheme: dark)").matches) ||
-  //       theme === "dark";
+  useEffect(() => {
+    if (window) {
+      const prefersDark =
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+        theme === "dark";
 
-  //     setIsDark(theme === "dark");
-  //     document.documentElement.classList.toggle("dark", prefersDark);
-  //   }
-  // }, [theme]);
+      setIsDark(theme === "dark");
+      document.documentElement.classList.toggle("dark", prefersDark);
+    }
+  }, [theme]);
 
   const onChangeTheme = (value: boolean) => {
     setIsDark(value);
