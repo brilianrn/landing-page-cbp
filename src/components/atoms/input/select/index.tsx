@@ -174,6 +174,7 @@ export const SelectOption: FC<SelectOptionProps> = ({
             defaultValue={defaultValue}
             value={value}
             onChange={(value) => {
+              // eslint-disable-next-line
               setValue && setValue(value as SelectOptionValue);
               setInputState(value ? (value as SelectOptionValue).value : "");
             }}

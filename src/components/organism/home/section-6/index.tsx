@@ -8,7 +8,7 @@ import {
 } from "@/components/atoms";
 import sx from "@/shared/styles/packages/home.module.css";
 import classNames from "clsx";
-import { motion, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { MapPin, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 
@@ -27,7 +27,7 @@ const DESTINATIONS: Record<FormValues["sendTo"], string> = {
   email: "mailto:contact@goapotik.com",
 };
 
-export const ContactUs = ({ y }: { y: MotionValue<string> }) => {
+export const ContactUs = () => {
   const { register, handleSubmit } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {

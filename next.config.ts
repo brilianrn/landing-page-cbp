@@ -11,9 +11,6 @@ const nextConfig = {
     DB_LOYALTY_URL: process.env.DB_LOYALTY_URL,
     JWT_SECRET: process.env.JWT_SECRET,
   },
-  devIndicators: {
-    buildActivity: false,
-  },
   // eslint-disable-next-line
   webpack(config: any) {
     // eslint-disable-next-line

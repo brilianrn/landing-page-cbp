@@ -4,30 +4,26 @@ import { Switch } from "@/components/atoms";
 import { sectionRoute } from "@/shared/constants/routes";
 import { store } from "@/shared/context";
 import sxTopbar from "@/shared/styles/components/topbar.module.css";
-import {
-  EStorageKey,
-  retrieveLocalStorageItem,
-  storeLocalStorageItem,
-} from "@/shared/utils";
+import { EStorageKey, storeLocalStorageItem } from "@/shared/utils";
 import classNames from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { ICBars, ICChevron, ICMoon, ICSun } from "public/assets/icons";
 import { Logo, LogoAll } from "public/assets/images";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Menus } from "./menus";
 import { ISectionHeader } from "./topbar";
 
-export const Topbar = () => {
+const Topbar = () => {
   const [isDark, setIsDark] = useState<boolean>(false);
 
   const {
     state: { activeMenu },
   } = useContext(store);
 
-  const storedTheme = retrieveLocalStorageItem(EStorageKey.THEME) || "light";
+  // const storedTheme = retrieveLocalStorageItem(EStorageKey.THEME) || "light";
 
-  const theme = useMemo(() => storedTheme, [storedTheme]);
+  // const theme = useMemo(() => storedTheme, [storedTheme]);
 
   const menus: Array<ISectionHeader> = [
     {
@@ -57,15 +53,17 @@ export const Topbar = () => {
     },
   ];
 
-  useEffect(() => {
-    setIsDark(theme === "dark");
-    document.documentElement.classList.toggle(
-      "dark",
-      theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-    );
-  }, [theme]);
+  // useEffect(() => {
+  //   if (window) {
+  //     const prefersDark =
+  //       (!("theme" in localStorage) &&
+  //         window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+  //       theme === "dark";
+
+  //     setIsDark(theme === "dark");
+  //     document.documentElement.classList.toggle("dark", prefersDark);
+  //   }
+  // }, [theme]);
 
   const onChangeTheme = (value: boolean) => {
     setIsDark(value);
@@ -143,3 +141,5 @@ export const Topbar = () => {
     </div>
   );
 };
+
+export default Topbar;

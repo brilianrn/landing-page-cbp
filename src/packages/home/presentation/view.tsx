@@ -1,10 +1,9 @@
 "use client";
 
-import { Button, Image } from "@/components/atoms";
+import { Button } from "@/components/atoms";
 import {
   ArticleSection,
   BuyGuideSection,
-  ContactUs,
   ProductSection,
   WordingLeft,
   WordingRight,
@@ -15,9 +14,18 @@ import { setActiveMenu } from "@/shared/context/actions";
 import styles from "@/shared/styles/packages/home.module.css";
 import classNames from "clsx";
 import { motion, useScroll, useTransform } from "framer-motion";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { ICChevron } from "public/assets/icons";
 import { useContext, useEffect, useRef } from "react";
 import { Zoom } from "react-slideshow-image";
+
+const ContactUs = dynamic(
+  () => import("@/components/organism").then((mod) => mod.ContactUs),
+  {
+    ssr: false,
+  }
+);
 
 export const HomeView = () => {
   const scrollContainerRef = useRef(null);
@@ -55,6 +63,7 @@ export const HomeView = () => {
         if (el) observer.unobserve(el);
       });
     };
+    // eslint-disable-next-line
   }, [dispatch, setActiveMenu]);
 
   return (
@@ -241,7 +250,7 @@ export const HomeView = () => {
         ref={sectionRef}
         className="bg-[#f9fafb] dark:bg-gray-900 px-6 md:px-16 snap-start h-screen w-screen items-center justify-center my-auto flex flex-col"
       >
-        <ContactUs y={y} />
+        <ContactUs />
       </section>
     </div>
   );
