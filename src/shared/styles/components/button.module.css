@@ -1,0 +1,90 @@
+@reference "../tailwind.css";
+
+.button {
+  @apply flex justify-center items-center rounded-lg transition-all duration-200 tracking-075 px-3 font-bold gap-2 cursor-pointer;
+}
+
+.sm {
+  @apply text-sm py-[10px];
+}
+
+.md {
+  @apply text-medium py-[10px];
+}
+
+.lg {
+  @apply text-lg py-[10px];
+}
+
+.xl {
+  @apply text-xl py-4;
+}
+
+.btn-primary {
+  @apply bg-primary-default text-white hover:bg-blue-600;
+}
+
+.btn-selected {
+  @apply bg-primary-lighter text-primary-default;
+}
+
+.btn-outline-primary {
+  @apply bg-transparent text-primary-default border border-primary-default hover:bg-primary-default hover:text-white hover:border-primary-default;
+}
+
+.btn-danger {
+  @apply text-white bg-danger-default hover:bg-red-500 focus:ring-red-300;
+}
+
+.btn-outline-danger {
+  @apply bg-white text-danger-default border border-danger-default hover:bg-red-100;
+}
+
+.btn-success {
+  @apply text-white bg-green-700 hover:bg-green-600 focus:ring-green-300;
+}
+
+.btn-info {
+  @apply text-white bg-cyan-700 hover:bg-cyan-600 focus:ring-cyan-300;
+}
+
+.btn-secondary {
+  @apply text-white bg-gray-600 hover:bg-gray-500 focus:ring-gray-300;
+}
+
+.btn-warning {
+  @apply text-white bg-warning-default hover:bg-yellow-400 focus:ring-amber-300;
+}
+
+.btn-orange {
+  @apply text-white bg-orange-500 hover:bg-orange-600 focus:ring-orange-700;
+}
+
+.btn-disabled {
+  @apply bg-gray-300 text-white cursor-not-allowed border-gray-400/[0.4];
+}
+
+.btn-transparent {
+  @apply bg-transparent hover:opacity-[0.7] text-dark-default;
+}
+
+.btn-transparent-primary {
+  @apply bg-transparent hover:opacity-[0.7] text-primary-default;
+}
+
+.btn-light {
+  @apply bg-gray-100 hover:bg-gray-200;
+}
+
+.btn-secondary-100 {
+  @apply bg-gray-100 text-dark-700 hover:bg-gray-400;
+}
+
+.btn-outline-white {
+  @apply bg-transparent text-white border-white border-1 hover:opacity-70;
+}
+
+.btn-gold {
+  @apply text-white !border-0 hover:opacity-70;
+  background: linear-gradient(180deg, #fc0 0%, #f70 100%);
+}

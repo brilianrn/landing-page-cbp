@@ -1,0 +1,52 @@
+@reference "../tailwind.css";
+
+.loader {
+  @apply border-gray-200 border-b-primary-default rounded-[50%] inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.xl {
+  @apply h-12 w-12 border-[5px];
+}
+
+.lg {
+  @apply h-10 w-10 border-4;
+}
+
+.md {
+  @apply h-8 w-8 border-4;
+}
+
+.sm {
+  @apply h-6 w-6 border-3;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton {
+  background-color: #eee !important;
+  background-image: linear-gradient(90deg, #eee, #f5f5f5, #eee) !important;
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 1;
+  width: 100%;
+  animation: skeleton-animation 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
