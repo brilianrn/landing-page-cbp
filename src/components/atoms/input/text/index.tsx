@@ -1,6 +1,6 @@
 "use client";
 
-import sxInput from "@/shared/styles/components/Input.module.css";
+import sxInput from "@/shared/styles/components/input.module.css";
 import { formatRupiah, isNumber, unformatRupiah } from "@/shared/utils";
 import classNames from "clsx";
 import Image from "next/image";
