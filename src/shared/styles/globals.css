@@ -33,11 +33,6 @@ body {
   scroll-snap-type: y mandatory;
 }
 
-.section {
-  height: 100vh;
-  scroll-snap-align: start;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }

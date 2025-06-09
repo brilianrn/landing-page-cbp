@@ -33,6 +33,39 @@ export const metadata: Metadata = {
       "Cahaya Bangun Perkasa adalah perusahaan yang bergerak di bidang general trading dan kontraktor. Kami berkomitmen untuk memberikan pelayanan yang terbaik dan produk yang berkualitas untuk memenuhi kebutuhan pelanggan. Kami memiliki berbagai macam produk bahan bangunan yang lengkap dan harga yang terjangkau.",
     images: ["/og-image.png"],
   },
+  authors: [
+    {
+      name: "Brilian Rachmad",
+      url: "https://brilianrachmad.vercel.app/",
+    },
+  ],
+  publisher: "Cahaya Bangun Perkasa",
+  keywords: [
+    "Cahaya Bangun Perkasa",
+    "General Trading",
+    "Kontraktor",
+    "Bahan Bangunan",
+    "Perusahaan Konstruksi",
+    "Material Bangunan",
+    "Pipa",
+    "Atap",
+    "Bata",
+    "Semen",
+    "Perpipaan",
+    "Konstruksi",
+    "Bangunan",
+    "Indonesia",
+    "Cahaya Bangun Perkasa Indonesia",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 const RootLayout = ({

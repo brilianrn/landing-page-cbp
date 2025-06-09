@@ -1,15 +1,15 @@
 @reference "../tailwind.css";
 
 .topbar {
-  @apply fixed inset-x-0 top-8 w-full flex justify-center -translate-y-1/2 z-[2];
+  @apply fixed inset-x-1/2 -translate-x-1/2 md:w-full w-[95%] flex justify-center z-[2];
 }
 
 .container {
-  @apply bg-gradient-to-r from-white/50 to-transparent flex justify-center md:gap-12 gap-4 items-end h-20 md:rounded-b-full md:w-fit w-full rounded-none pb-4 lg:px-20 md:px-12 px-4;
+  @apply h-full md:py-4 py-0 flex justify-center md:gap-12 gap-4;
 }
 
 .shape {
-  @apply flex justify-between w-full items-center md:gap-20 gap-0;
+  @apply flex justify-between w-full lg:gap-20 md:gap-40 gap-0;
 }
 
 .contact-us {

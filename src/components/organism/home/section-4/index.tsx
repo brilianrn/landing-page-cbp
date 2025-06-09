@@ -33,9 +33,9 @@ const articles = [
 
 export const ArticleSection = ({ y }: { y: MotionValue<string> }) => {
   return (
-    <div className="flex flex-col w-full max-w-7xl h-full items-start justify-center px-6 md:px-12">
+    <div className="flex flex-col w-full max-w-7xl h-full items-start justify-center px-6 md:px-12 lg:pt-0 lg:pb-0 md:pt-24 md:pb-24 pt-14 pb-4 mx-auto">
       <motion.h2
-        className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 relative"
+        className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white md:mb-12 mb-4 relative"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

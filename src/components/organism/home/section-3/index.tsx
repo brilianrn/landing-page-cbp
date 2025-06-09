@@ -30,16 +30,16 @@ const products = [
 
 export const ProductSection = ({ y }: { y: MotionValue<string> }) => {
   return (
-    <div className="flex flex-col w-full h-full items-center justify-center">
+    <div className="flex flex-col w-full h-full items-center justify-center md:pt-0 md:pb-0 pb-2 pt-14">
       <motion.div
         style={{ y }}
-        className="mb-6 text-center tracking-075"
+        className="mb-6 text-center tracking-075 px-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <motion.h2
-          className="text-3xl uppercase md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
+          className="text-2xl uppercase md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
@@ -59,7 +59,7 @@ export const ProductSection = ({ y }: { y: MotionValue<string> }) => {
       <ProductSectionCategories />
 
       {/* Bagian dengan Parallax Effect */}
-      <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6 px-6 md:px-10 cursor-pointer">
+      <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 px-2 md:px-10 cursor-pointer">
         {products.map((product, idx) => (
           <motion.div
             key={idx}

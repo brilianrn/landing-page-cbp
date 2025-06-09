@@ -7,8 +7,9 @@
 }
 
 .section {
-  height: 100vh;
-  scroll-snap-align: start;
+  @apply lg:h-screen h-full snap-start;
+  /*   height: 100vh;
+  scroll-snap-align: start; */
 }
 
 .contact-us-container {

@@ -15,7 +15,6 @@ import styles from "@/shared/styles/packages/home.module.css";
 import classNames from "clsx";
 import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { ICChevron } from "public/assets/icons";
 import { useContext, useEffect, useRef } from "react";
 import { Zoom } from "react-slideshow-image";
@@ -76,17 +75,17 @@ export const HomeView = () => {
           scale={0.7}
           autoplay
           nextArrow={
-            <ICChevron className="text-gray-300 opacity-25 hover:opacity-90 duration-200 transition-all md:!mr-2 mr-2 lg:size-24 size-12" />
+            <ICChevron className="md:block hidden text-gray-300 opacity-25 hover:opacity-90 duration-200 transition-all md:!mr-2 mr-2 lg:size-24 size-12" />
           }
           prevArrow={
-            <ICChevron className="text-gray-300 opacity-25 hover:opacity-90 duration-200 transition-all md:!ml-2 ml-2 lg:size-24 size-12 rotate-180" />
+            <ICChevron className="md:block hidden text-gray-300 opacity-25 hover:opacity-90 duration-200 transition-all md:!ml-2 ml-2 lg:size-24 size-12 rotate-180" />
           }
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-[url('/assets/images/home/home.jpg')] bg-cover h-screen w-screen"
+            className="bg-[url('/assets/images/home/home.jpg')] bg-cover bg-right h-screen w-screen"
           >
             <WordingRight
               title="Bangun Rumah Impian dengan Material Berkualitas"
@@ -97,7 +96,7 @@ export const HomeView = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-[url('/assets/images/home/roof.jpg')] bg-cover h-screen w-screen"
+            className="bg-[url('/assets/images/home/roof.jpg')] bg-cover bg-right h-screen w-screen"
           >
             <WordingRight
               title="Atap Berkualitas, Harga Kompetitif"
@@ -119,7 +118,7 @@ export const HomeView = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-[url('/assets/images/home/bricks.jpeg')] bg-cover h-screen w-screen"
+            className="bg-[url('/assets/images/home/bricks.jpeg')] bg-cover bg-right h-screen w-screen"
           >
             <WordingLeft
               title="Bata Kokoh, Hasil Proyek Makin Oke!"
@@ -134,11 +133,11 @@ export const HomeView = () => {
         ref={sectionRef}
         className={classNames([
           styles.section,
-          "relative overflow-hidden flex flex-col-reverse md:flex-row items-center bg-[#f9fafb] dark:bg-gray-900 transition-colors duration-300",
+          "relative overflow-hidden flex flex-col-reverse lg:flex-row lg:items-center items-start bg-[#f9fafb] dark:bg-gray-900 transition-colors duration-300",
         ])}
       >
         {/* Konten Teks */}
-        <div className="relative w-full md:w-1/2 px-6 md:px-16 py-12">
+        <div className="relative w-full lg:w-1/2 px-6 lg:px-16 lg:py-12 md:py-12 py-4">
           <motion.h3
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -208,16 +207,9 @@ export const HomeView = () => {
         {/* Gambar Parallax */}
         <motion.div
           style={{ y }}
-          className="relative w-full md:w-1/2 h-[300px] md:h-[500px] p-4"
+          className="relative w-full lg:w-1/2 lg:h-[500px] md:h-full h-[250px] p-4"
         >
-          <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
-            <Image
-              src="/assets/images/home/building.jpg"
-              alt="pt cahaya bangun perkasa building"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg bg-[url('/assets/images/home/building.jpg')] bg-cover" />
         </motion.div>
       </section>
 
@@ -240,7 +232,7 @@ export const HomeView = () => {
       <section
         id="how-to-buy"
         ref={sectionRef}
-        className="bg-[#f9fafb] dark:bg-gray-900 px-6 md:px-16 snap-start h-screen w-screen flex items-center justify-center"
+        className="w-screen min-h-screen snap-start bg-[#f9fafb] dark:bg-gray-900 flex items-center justify-center"
       >
         <BuyGuideSection y={y} />
       </section>
