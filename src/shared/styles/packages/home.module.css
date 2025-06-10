@@ -13,6 +13,6 @@
 }
 
 .contact-us-container {
-  @apply h-96 rounded-3xl lg:w-[80vw] w-[90vw] justify-start gap-8 mt-8 flex lg:flex-row flex-col;
+  @apply h-[27rem] rounded-3xl lg:w-[90vw] w-[90vw] justify-start gap-8 mt-8 grid grid-cols-1 lg:grid-cols-3 p-4;
   box-shadow: 0px 0px 4px 0px rgba(87, 87, 87, 0.24);
 }

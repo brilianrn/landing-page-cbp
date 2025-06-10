@@ -42,6 +42,18 @@ export const WordingRight: FC<WordingProps> = ({ description, title }) => {
             size={isMobile ? "sm" : "lg"}
             className="mt-8 !w-fit !rounded-full !px-12"
             icon={<ICArrow className="text-white md:size-6 size-4" />}
+            onClick={() => {
+              const contactUsElem = document.getElementById("contact-us");
+              if (contactUsElem) {
+                window.scrollTo({
+                  top:
+                    contactUsElem.getBoundingClientRect().top +
+                    window.pageYOffset -
+                    100,
+                  behavior: "smooth",
+                });
+              }
+            }}
           />
         </motion.div>
       </div>

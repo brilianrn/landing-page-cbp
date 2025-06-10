@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "clsx";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { ICPin } from "public/assets/icons";
@@ -11,12 +12,14 @@ interface MapsProps {
   position?: [number, number];
   zoom?: number;
   popUpText?: string;
+  className?: string;
 }
 
 export const Maps = ({
   position = [-7.4952943, 112.7221395],
   zoom = 17,
   popUpText = "Lokasi Toko Kami",
+  className,
 }: MapsProps) => {
   const [icon, setIcon] = useState<L.DivIcon>();
   const iconRef = useRef(document.createElement("div"));
@@ -36,7 +39,12 @@ export const Maps = ({
   }, []);
 
   return (
-    <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-md">
+    <div
+      className={classNames([
+        "w-full h-[400px] rounded-xl overflow-hidden shadow-md",
+        className,
+      ])}
+    >
       <MapContainer
         center={position}
         zoom={zoom}

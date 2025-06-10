@@ -1,9 +1,9 @@
 "use client";
 
+import { Image } from "@/components/atoms";
 import classNames from "clsx";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import Slider from "react-slick";
 
 interface TestimonialCardProps {
   logoSrc: string;
@@ -15,144 +15,170 @@ interface TestimonialCardProps {
 
 const testimonials: TestimonialCardProps[] = [
   {
-    logoSrc: "/logo/zambon.png",
-    logoAlt: "Zambon",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "Bekerjasama dengan GoApotik membuka wawasan baru tentang e-commerce, GoApotik memiliki jumlah merchant yang luas dan sudah dikenal baik oleh costumer.",
-    name: "David Barus",
-    role: "Associate Brand Manager | Zambon",
+      "PT Cahaya Bangun Perkasa selalu memberikan pelayanan terbaik dengan material berkualitas. Kami sangat puas dengan ketepatan waktu pengiriman materialnya.",
+    name: "Andi Pratama",
+    role: "Site Manager | CV Karya Mandiri",
   },
   {
-    logoSrc: "/logo/dexagroup.png",
-    logoAlt: "Dexa",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "Working with GoApotik and their commitment to excellence have made it possible to build innovative solutions and move forward together.",
-    name: "Dhandy Dwi Yustica",
-    role: "Marketing Communication | Dexa",
+      "Sebagai mitra proyek, PT Cahaya Bangun Perkasa selalu mendukung kebutuhan kami dengan pelayanan profesional dan harga kompetitif.",
+    name: "Siti Aisyah",
+    role: "Procurement Officer | PT Wijaya Karya",
   },
   {
-    logoSrc: "/logo/kalbe.png",
-    logoAlt: "Kalbe",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "Kami sangat terbantu dengan ekosistem GoApotik yang luas dan terpercaya di dunia farmasi digital.",
-    name: "Laras Sari",
-    role: "Digital Brand Executive | Kalbe",
+      "Produk dari PT Cahaya Bangun Perkasa memiliki kualitas yang sangat baik, sangat cocok untuk proyek-proyek besar yang memerlukan ketahanan tinggi.",
+    name: "Budi Santoso",
+    role: "Project Engineer | PT Adhi Karya",
   },
   {
-    logoSrc: "/logo/sanbe.png",
-    logoAlt: "Sanbe",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "GoApotik memberikan solusi e-commerce yang efektif dan efisien untuk distribusi produk kami.",
-    name: "Bima Prakoso",
-    role: "Product Manager | Sanbe",
+      "Kami selalu mengandalkan PT Cahaya Bangun Perkasa untuk suplai material bangunan. Respon cepat dan layanan after sales yang sangat membantu.",
+    name: "Rizky Maulana",
+    role: "Owner | CV Jaya Abadi",
   },
   {
-    logoSrc: "/logo/kimiafarma.png",
-    logoAlt: "Kimia Farma",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "Kami percaya kemitraan dengan GoApotik akan terus tumbuh dan memberikan dampak positif.",
-    name: "Rina Utami",
-    role: "Brand Supervisor | Kimia Farma",
+      "Rekanan terpercaya dalam penyediaan alat berat dan material konstruksi. Terima kasih atas dukungan untuk proyek kami.",
+    name: "Wahyu Ramadhan",
+    role: "Logistics Coordinator | PT PP (Persero) Tbk",
   },
   {
-    logoSrc: "/logo/tempo.png",
-    logoAlt: "Tempo",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "Platform GoApotik sangat user-friendly dan membantu dalam pemasaran digital.",
-    name: "Yudi Saputra",
-    role: "Marketing | Tempo Scan Pacific",
+      "Kami merasa sangat terbantu dengan solusi material konstruksi yang ditawarkan oleh PT Cahaya Bangun Perkasa. Sangat profesional!",
+    name: "Eka Putri",
+    role: "Architect | Studio Karya Nusantara",
   },
   {
-    logoSrc: "/logo/guardian.png",
-    logoAlt: "Guardian",
+    logoSrc: "/logo/ptcbp.png",
+    logoAlt: "PT Cahaya Bangun Perkasa",
     message:
-      "Dukungan GoApotik sangat luar biasa untuk pengembangan bisnis kami secara online.",
-    name: "Tiara Ayu",
-    role: "Sales Executive | Guardian",
+      "Pelayanan PT Cahaya Bangun Perkasa selalu memuaskan, sangat cocok untuk mendukung perkembangan infrastruktur Indonesia.",
+    name: "Hendra Wijaya",
+    role: "Construction Manager | PT Hutama Karya",
   },
 ];
 
-export default function TestimonialCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+const settings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  className: "center",
+  centerMode: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
-  const goNext = () =>
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  const goPrev = () =>
-    setActiveIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      goNext();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const getVisibleIndexes = () => {
-    const prev = (activeIndex - 1 + testimonials.length) % testimonials.length;
-    const next = (activeIndex + 1) % testimonials.length;
-    return [prev, activeIndex, next];
-  };
-
-  const visibleIndexes = getVisibleIndexes();
-
+export const TestimonialCarousel = () => {
   return (
-    <div className="relative flex justify-center items-center min-h-[440px] bg-white px-4">
-      <button
-        onClick={goPrev}
-        className="absolute left-0 z-10 px-2 py-1 text-2xl"
-        aria-label="Previous"
-      >
-        ◀
-      </button>
-
-      <div className="flex gap-6 overflow-hidden">
-        {testimonials.map((t, i) => {
-          const isVisible = visibleIndexes.includes(i);
-          const isActive = i === activeIndex;
-
-          return (
+    <Slider {...settings} dots={false}>
+      {testimonials.map((t, i) => (
+        <motion.div
+          key={i}
+          className={classNames(
+            "p-2 transition-all duration-500 w-full z-10"
+            // isActive
+            //   ? "bg-white shadow-md scale-100 opacity-100 z-10"
+            //   : isVisible
+            //   ? "bg-white/60 blur-[1px] scale-95 opacity-40 z-0"
+            //   : "hidden"
+          )}
+          layout
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="rounded-xl flex items-start gap-4 bg-white shadow-md scale-100 opacity-100 min-h-44 h-full p-4"
+          >
             <motion.div
-              key={i}
-              className={classNames(
-                "rounded-xl p-6 border transition-all duration-500 w-[360px] min-h-[340px]",
-                isActive
-                  ? "bg-white shadow-md scale-100 opacity-100 z-10"
-                  : isVisible
-                  ? "bg-white/60 blur-[1px] scale-95 opacity-40 z-0"
-                  : "hidden"
-              )}
-              layout
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="flex-shrink-0"
             >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0">
-                  <Image
-                    src={t.logoSrc}
-                    alt={t.logoAlt}
-                    width={60}
-                    height={60}
-                    className="rounded-full object-contain"
-                  />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-700 mb-4">{t.message}</p>
-                  <p className="font-semibold text-black">{t.name}</p>
-                  <p className="text-sm text-gray-500">{t.role}</p>
-                </div>
-              </div>
+              <Image
+                src={t.logoSrc}
+                alt={t.logoAlt}
+                width={60}
+                height={60}
+                className="rounded-full object-contain"
+              />
             </motion.div>
-          );
-        })}
-      </div>
-
-      <button
-        onClick={goNext}
-        className="absolute right-0 z-10 px-2 py-1 text-2xl"
-        aria-label="Next"
-      >
-        ▶
-      </button>
-    </div>
+            <div>
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="text-sm text-gray-700 mb-4"
+              >
+                {t.message}
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="font-semibold text-black"
+              >
+                {t.name}
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="text-sm text-gray-500"
+              >
+                {t.role}
+              </motion.p>
+            </div>
+          </motion.div>
+        </motion.div>
+      ))}
+    </Slider>
   );
-}
+};

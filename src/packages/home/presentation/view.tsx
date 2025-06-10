@@ -240,7 +240,7 @@ export const HomeView = () => {
       <section
         id="contact-us"
         ref={sectionRef}
-        className="bg-[#f9fafb] dark:bg-gray-900 px-6 md:px-16 snap-start h-screen w-screen items-center justify-center my-auto flex flex-col"
+        className="w-screen min-h-screen snap-start bg-[#f9fafb] dark:bg-gray-900 flex items-center justify-center overflow-y-auto"
       >
         <ContactUs />
       </section>

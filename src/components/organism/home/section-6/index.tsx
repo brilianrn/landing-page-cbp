@@ -4,12 +4,15 @@ import {
   Button,
   InputText,
   InputTextarea,
+  Maps,
   SelectOption,
 } from "@/components/atoms";
+import constants from "@/shared/constants";
 import sx from "@/shared/styles/packages/home.module.css";
 import classNames from "clsx";
 import { motion } from "framer-motion";
 import { MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 type FormValues = {
@@ -50,7 +53,7 @@ export const ContactUs = () => {
   };
 
   return (
-    <motion.div className="h-full flex flex-col items-center justify-center">
+    <motion.div className="h-full flex flex-col lg:items-center items-start justify-center">
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -66,17 +69,29 @@ export const ContactUs = () => {
           "bg-white dark:bg-gray-800 relative pr-4",
         ])}
       >
-        {/* Background Gradient & CS Illustration */}
-        <div className="absolute h-96 w-1/2">
-          <div className="h-full w-full bg-gradient-to-r from-primary-default opacity-30 to-transparent rounded-l-3xl" />
-          <motion.div className="bg-[url('/assets/images/home/cs.png')] bg-cover bg-no-repeat bg-center absolute h-full w-full bottom-0 -left-[140px] opacity-100 z-0" />
-        </div>
-
-        {/* Spacer for left illustration */}
-        <div className="w-96" />
+        <motion.div className="flex flex-col gap-3 my-auto">
+          <div className="w-full h-fit rounded-xl overflow-hidden">
+            <Maps
+              className="!h-[25rem]"
+              // eslint-disable-next-line
+              // @ts-ignore
+              popUpText={
+                <Link
+                  target="_blank"
+                  href={constants.mapAddress}
+                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 group"
+                >
+                  Permata Candiloka Blok Y No. 03 Candi – Sidoarjo Jawa Timur
+                </Link>
+              }
+              position={[-7.4952943, 112.7221395]}
+              zoom={14}
+            />
+          </div>
+        </motion.div>
 
         {/* Kontak Info */}
-        <div className="flex flex-col gap-8 w-full py-4 pl-32">
+        <div className="flex flex-col gap-8 w-full py-4">
           {/* Alamat */}
           <div className="flex items-start gap-3">
             <motion.div
@@ -161,7 +176,7 @@ export const ContactUs = () => {
         </div>
 
         {/* Formulir Kontak */}
-        <div className="flex flex-col gap-4 w-3/5 py-4">
+        <div className="flex flex-col gap-4 w-full py-4">
           <form
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onSubmit)}
