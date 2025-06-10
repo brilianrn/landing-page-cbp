@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { TestimonialCarousel } from "./testimonial";
 
-export const BuyGuideSection = ({ y }: { y: MotionValue<string> }) => {
+export const BuyGuideSection = () => {
   return (
     <div className="relative w-full py-16 flex flex-col justify-center gap-8">
       <section className="relative w-full px-6 lg:px-16">

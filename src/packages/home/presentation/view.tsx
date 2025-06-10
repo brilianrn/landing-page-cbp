@@ -234,7 +234,7 @@ export const HomeView = () => {
         ref={sectionRef}
         className="w-screen min-h-screen snap-start bg-[#f9fafb] dark:bg-gray-900 flex items-center justify-center"
       >
-        <BuyGuideSection y={y} />
+        <BuyGuideSection />
       </section>
 
       <section
