@@ -6,10 +6,9 @@ const nextConfig = {
   },
   staticPageGenerationTimeout: 1000,
   env: {
-    API_URL_LOYALTY: process.env.API_URL_LOYALTY,
-    DB_OVVBT_URL: process.env.DB_OVVBT_URL,
-    DB_LOYALTY_URL: process.env.DB_LOYALTY_URL,
-    JWT_SECRET: process.env.JWT_SECRET,
+    BASE_URL: process.env.BASE_URL,
+    TITLE: process.env.TITLE,
+    DESCRIPTION: process.env.DESCRIPTION,
   },
   // eslint-disable-next-line
   webpack(config: any) {

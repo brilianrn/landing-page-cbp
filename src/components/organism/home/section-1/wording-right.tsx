@@ -33,7 +33,7 @@ export const WordingRight: FC<WordingProps> = ({ description, title }) => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.9 }}
-          className="flex justify-end"
+          className="flex lg:justify-start justify-end"
         >
           <Button
             label="Hubungi Kami"

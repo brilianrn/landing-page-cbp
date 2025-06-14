@@ -13,7 +13,7 @@ export const howToBuyRoute = "/how-to-buy";
 
 export const contactUsRoute = "/contact-us";
 
-export const aboutUsRoute = "/about-us";
+export const aboutUsRoute = "/profile";
 
 const productRoutePrefix = "/product";
 export const productRoute = {

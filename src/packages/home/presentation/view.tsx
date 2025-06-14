@@ -8,13 +8,14 @@ import {
   WordingLeft,
   WordingRight,
 } from "@/components/organism";
-import { sectionRoute } from "@/shared/constants/routes";
+import { aboutUsRoute, sectionRoute } from "@/shared/constants/routes";
 import { store } from "@/shared/context";
 import { setActiveMenu } from "@/shared/context/actions";
 import styles from "@/shared/styles/packages/home.module.css";
 import classNames from "clsx";
 import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { ICChevron } from "public/assets/icons";
 import { useContext, useEffect, useRef } from "react";
 import { Zoom } from "react-slideshow-image";
@@ -31,6 +32,8 @@ export const HomeView = () => {
   const sectionRef = useRef(null);
 
   const { dispatch } = useContext(store);
+
+  const { push: navigate } = useRouter();
 
   const { scrollYProgress } = useScroll({
     container: scrollContainerRef,
@@ -200,6 +203,7 @@ export const HomeView = () => {
               type="orange"
               btnType="button"
               size="sm"
+              onClick={() => navigate(aboutUsRoute)}
             />
           </motion.div>
         </div>
