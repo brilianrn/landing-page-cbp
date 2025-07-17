@@ -62,6 +62,12 @@ export const SelectOption: FC<SelectOptionProps> = ({
             render={({ field }) => (
               <Select
                 {...field}
+                onChange={(value) => {
+                  field.onChange(value);
+                  setInputState(
+                    value ? (value as SelectOptionValue).value : ""
+                  );
+                }}
                 components={{
                   ...makeAnimated(),
                   DropdownIndicator: () => (

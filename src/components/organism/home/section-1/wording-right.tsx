@@ -1,10 +1,11 @@
 "use client";
 
-import { Button } from "@/components/atoms";
+import { Button, Popover } from "@/components/atoms";
 import { useScreenSize } from "@/shared/hooks";
 import { motion } from "framer-motion";
 import { ICArrow } from "public/assets/icons";
 import { FC } from "react";
+import { Phones } from "./phones";
 import { WordingProps } from "./section-1";
 
 export const WordingRight: FC<WordingProps> = ({ description, title }) => {
@@ -35,26 +36,23 @@ export const WordingRight: FC<WordingProps> = ({ description, title }) => {
           transition={{ delay: 0.2, duration: 0.9 }}
           className="flex lg:justify-start justify-end"
         >
-          <Button
-            label="Hubungi Kami"
-            type="orange"
-            btnType="button"
-            size={isMobile ? "sm" : "lg"}
-            className="mt-8 !w-fit !rounded-full !px-12"
-            icon={<ICArrow className="text-white md:size-6 size-4" />}
-            onClick={() => {
-              const contactUsElem = document.getElementById("contact-us");
-              if (contactUsElem) {
-                window.scrollTo({
-                  top:
-                    contactUsElem.getBoundingClientRect().top +
-                    window.pageYOffset -
-                    100,
-                  behavior: "smooth",
-                });
-              }
-            }}
-          />
+          <Popover
+            itemClassName="w-60 !p-0 !bg-white dark:!bg-gray-800"
+            position="bottom end"
+            panelClassName="!p-0"
+            trigger={
+              <Button
+                label="Hubungi Kami"
+                type="orange"
+                btnType="button"
+                size={isMobile ? "sm" : "lg"}
+                className="mt-8 !w-fit !rounded-full !px-12"
+                icon={<ICArrow className="text-white md:size-6 size-4" />}
+              />
+            }
+          >
+            <Phones />
+          </Popover>
         </motion.div>
       </div>
     </div>

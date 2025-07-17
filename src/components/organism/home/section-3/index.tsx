@@ -1,34 +1,43 @@
+// ProductSection.tsx
 "use client";
 
 import { Image } from "@/components/atoms";
+import { productRoute } from "@/shared/constants/routes";
 import { motion, MotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { ProductSectionCategories } from "./categories";
 
-const products = [
+const brands = [
   {
-    name: "Scg Light Brick 7.5 Cm for interior, exterior...",
-    price: "IDR 6.500",
-    image: "/assets/products/bata.png",
+    name: "FUMIRA",
+    description:
+      "Fumira selalu menyediakan pilihan produk dan layanan terbaik bagi pelanggan.",
+    logo: "/assets/images/product/fumira/logo.png",
   },
   {
-    name: "Rooftop Wave Roof 4 Meter Semi Transpare...",
-    price: "IDR 901.800",
-    image: "/assets/products/atap.png",
+    name: "RUFINGKU",
+    description:
+      "Rufingku di ciptakan dengan semangat untuk menciptakan solusi yang lebih baik.",
+    logo: "/assets/images/product/rufingku/logo.png",
   },
   {
-    name: "SCG Portland Composite Cement 40 kg",
-    price: "IDR 53.000",
-    image: "/assets/products/semen.png",
+    name: "LYSAGHT",
+    description:
+      "Atap Lysaght adalah atap baja galvanis tahan lama, kuat, dan tahan cuaca ekstrem.",
+    logo: "/assets/images/product/lysaght/logo.png",
   },
   {
-    name: "Rooftop Roof Accessories 35×82 ...",
-    price: "IDR 105.000",
-    image: "/assets/products/atap2.png",
+    name: "INTEC",
+    description:
+      "Atap Intec adalah atap baja galvanis tahan lama, kuat, dan tahan cuaca ekstrem.",
+    logo: "/assets/images/product/intec/logo.png",
   },
 ];
 
 export const ProductSection = ({ y }: { y: MotionValue<string> }) => {
+  const { push: navigate } = useRouter();
+
   return (
     <div className="flex flex-col w-full h-full items-center justify-center md:pt-0 md:pb-0 pb-2 pt-14">
       <motion.div
@@ -44,7 +53,7 @@ export const ProductSection = ({ y }: { y: MotionValue<string> }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
-          Produk <span className="text-orange-600">Kami</span>
+          Brand <span className="text-orange-600">Kami</span>
         </motion.h2>
         <motion.p
           className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
@@ -52,64 +61,50 @@ export const ProductSection = ({ y }: { y: MotionValue<string> }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Temukan kualitas bahan terbaik untuk setiap proyek konstruksi Anda.
+          Pilihan brand terbaik yang bekerja sama dengan Cahaya Bangun Perkasa.
         </motion.p>
       </motion.div>
 
       <ProductSectionCategories />
 
-      {/* Bagian dengan Parallax Effect */}
-      <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 px-2 md:px-10 cursor-pointer">
-        {products.map((product, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.03 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700"
-          >
-            {/* Gambar dengan efek parallax yang bergerak saat scroll */}
-            <motion.div
-              className="w-full h-36 md:h-40 relative rounded-t-md overflow-hidden mb-3 bg-gray-100 dark:bg-gray-700"
-              style={{
-                transform: `translateY(${parseFloat(y.get()) * 0.1}px)`, // Membuat parallax bergerak terus-menerus
-              }}
-              transition={{ type: "spring", stiffness: 100 }}
+      <motion.div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-6 px-2 md:px-10">
+        {brands.map((brand, idx) => (
+          <div key={idx} className="flex justify-center">
+            <motion.a
+              href={productRoute.index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.03 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className="max-w-52 w-full bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between"
             >
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-contain"
-              />
-            </motion.div>
-            <motion.div className="px-3 pb-3">
-              <motion.h3
-                className="text-xs md:text-sm font-medium text-gray-800 dark:text-gray-100 mb-1 line-clamp-2"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.2 }}
-              >
-                {product.name}
-              </motion.h3>
-              <motion.p
-                className="text-sm font-semibold text-gray-900 dark:text-white"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.2 }}
-              >
-                {product.price}
-              </motion.p>
-            </motion.div>
-          </motion.div>
+              <div className="pb-4 text-center">
+                <div className="h-52 flex justify-center items-center mb-4 rounded-lg bg-orange-50">
+                  <Image
+                    src={brand.logo}
+                    alt={brand.name}
+                    width={160}
+                    height={160}
+                    className="object-contain min-h-52 min-w-52 rounded-t-xl"
+                  />
+                </div>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                  {brand.name}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {brand.description}
+                </p>
+              </div>
+            </motion.a>
+          </div>
         ))}
       </motion.div>
 
       <motion.button
         whileHover={{ x: 4 }}
         className="flex items-center gap-2 text-sm text-orange-600 hover:underline transition cursor-pointer"
+        onClick={() => navigate(productRoute.index)}
       >
         Lihat Semua Produk <ArrowRight className="w-4 h-4" />
       </motion.button>

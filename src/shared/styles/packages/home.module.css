@@ -1,6 +1,7 @@
 @reference "../tailwind.css";
 
 .scroll-container {
+  @apply overflow-x-hidden;
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;

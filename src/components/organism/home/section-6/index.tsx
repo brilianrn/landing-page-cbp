@@ -15,39 +15,61 @@ import { MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
+type TSendTo = "wa1" | "wa2" | "email";
+
 type FormValues = {
   name: string;
   company?: string;
-  message: string;
-  sendTo: "wa1" | "wa2" | "wa3" | "wa4" | "email";
-};
-
-const DESTINATIONS: Record<FormValues["sendTo"], string> = {
-  wa1: "https://wa.me/6281234567890",
-  wa2: "https://wa.me/6282234567890",
-  wa3: "https://wa.me/6283234567890",
-  wa4: "https://wa.me/6284234567890",
-  email: "mailto:contact@goapotik.com",
+  message?: string;
+  sendTo: {
+    value: TSendTo;
+    label: string;
+  };
 };
 
 export const ContactUs = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
     const { name, company, message, sendTo } = data;
+    const date = new Date();
+    const hours = date.getHours();
+    const greeting =
+      hours >= 6 && hours < 12
+        ? "Selamat pagi"
+        : hours >= 12 && hours < 15
+        ? "Selamat siang"
+        : hours >= 15 && hours < 18
+        ? "Selamat sore"
+        : "Selamat malam";
 
-    const link =
-      sendTo === "email"
-        ? `mailto:contact@goapotik.com?subject=Pesan dari ${encodeURIComponent(
-            name
-          )}&body=${encodeURIComponent(
-            `Nama: ${name}\nPerusahaan: ${company ?? "-"}\nPesan:\n${message}`
-          )}`
-        : `${DESTINATIONS[sendTo]}?text=${encodeURIComponent(
-            `Halo, saya ${name}${
-              company ? " dari " + company : ""
-            }. Saya ingin menyampaikan:\n\n${message}`
-          )}`;
+    const finalMessage = message?.trim()
+      ? `${greeting}, saya ${name}${
+          company ? " dari " + company : ""
+        }. Saya ingin menyampaikan:\n\n${message}`
+      : constants.defaultMessage;
+    const isEmail = sendTo?.value?.includes("@");
+
+    let link = "";
+    if (isEmail) {
+      const subject = `Pesan dari ${name}`;
+      const body = `Nama: ${name}\nPerusahaan: ${company || "-"}\nPesan:\n${
+        message || constants.defaultMessage
+      }`;
+      const mailto = `mailto:${sendTo?.value}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      link = mailto;
+    } else {
+      link = `${constants.waMe(sendTo?.value)}?text=${encodeURIComponent(
+        finalMessage
+      )}`;
+    }
 
     window.open(link, "_blank");
   };
@@ -194,6 +216,7 @@ export const ContactUs = () => {
                 size="lg"
                 useLabelInside
                 required
+                errorMessage={errors?.name?.message}
               />
             </motion.div>
             <motion.div
@@ -220,7 +243,6 @@ export const ContactUs = () => {
                 register={register}
                 label="Pesan"
                 useLabelInside
-                required
               />
             </motion.div>
             <motion.div
@@ -230,17 +252,25 @@ export const ContactUs = () => {
             >
               <SelectOption
                 name="sendTo"
+                control={control}
                 register={register}
                 useInsideLabel
                 required
+                errorMessage={errors?.sendTo?.message}
                 label="Pilih Tujuan"
                 options={[
-                  { value: "", label: "Kirim ke..." },
-                  { value: "wa1", label: "WhatsApp 1" },
-                  { value: "wa2", label: "WhatsApp 2" },
-                  { value: "wa3", label: "WhatsApp 3" },
-                  { value: "wa4", label: "WhatsApp 4" },
-                  { value: "email", label: "Email" },
+                  {
+                    value: "6281804899000",
+                    label: "0818-0489-9000 (WhatsApp 1)",
+                  },
+                  {
+                    value: "6283833333913",
+                    label: "0838-3333-3913 (WhatsApp 2)",
+                  },
+                  {
+                    value: "ptcahayabangunperkasa@gmail.com",
+                    label: "ptcahayabangunperkasa@gmail.com (Email)",
+                  },
                 ]}
               />
             </motion.div>
